@@ -1,0 +1,8 @@
+{
+  "name": "Samsad AI - Parliamentary Assistant",
+  "description": "An AI-powered assistant for Nepal's Parliament Members, streamlining speech preparation, legislative research, and constituent engagement.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
