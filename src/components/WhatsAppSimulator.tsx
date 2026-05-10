@@ -11,7 +11,11 @@ interface Message {
   timestamp: Date;
 }
 
-export default function WhatsAppSimulator() {
+interface WhatsAppSimulatorProps {
+  onAddReminder?: (text: string, time: string) => void;
+}
+
+export default function WhatsAppSimulator({ onAddReminder }: WhatsAppSimulatorProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'model',
@@ -49,10 +53,20 @@ export default function WhatsAppSimulator() {
 
     const responseText = await chatWithSamsad(input, history);
     
+    // Parse for reminder tags: [REMINDER: text | time]
+    const reminderMatch = responseText.match(/\[REMINDER:\s*(.*?)\s*\|\s*(.*?)\s*\]/);
+    if (reminderMatch && onAddReminder) {
+      const [_, text, time] = reminderMatch;
+      onAddReminder(text, time);
+    }
+
+    // Strip tags from visible message
+    const cleanText = responseText.replace(/\[REMINDER:.*?\]/g, '').trim();
+
     setIsTyping(false);
     setMessages(prev => [...prev, {
       role: 'model',
-      parts: [{ text: responseText }],
+      parts: [{ text: cleanText }],
       timestamp: new Date()
     }]);
   };

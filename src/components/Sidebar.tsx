@@ -10,12 +10,13 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { id: 'simulator', label: 'Samsad AI (WhatsApp)', icon: MessageCircle },
-  { id: 'speech', label: 'Speech Lab', icon: FileText },
-  { id: 'library', label: 'Legislative Library', icon: BookOpen },
-  { id: 'constituents', label: 'Constituent Portal', icon: Users },
-  { id: 'calendar', label: 'Session Calendar', icon: Calendar },
+  { id: 'dashboard', label: 'Assistant Dashboard', icon: LayoutDashboard },
+  { id: 'simulator', label: 'Samsad AI (Chat)', icon: MessageCircle },
+  { id: 'speech', label: 'Speech Drafting', icon: FileText },
+  { id: 'reminders', label: 'Task Reminders', icon: Bell },
+  { id: 'library', label: 'Legislative Research', icon: BookOpen },
+  { id: 'constituents', label: 'Constituent Inbox', icon: Users },
+  { id: 'calendar', label: 'Parliamentary Calendar', icon: Calendar },
 ];
 
 interface SidebarProps {

@@ -14,6 +14,14 @@ export interface SessionRecord {
   videoUrl?: string;
 }
 
+export interface Reminder {
+  id: string;
+  text: string;
+  time: string; // ISO string
+  completed: boolean;
+  notified: boolean;
+}
+
 export const MOCK_BILLS: Bill[] = [
   { id: '1', title: 'Federal Civil Service Bill, 2080', category: 'Administration', status: 'Committee', lastUpdated: '2024-05-01' },
   { id: '2', title: 'Economic Bill, 2081', category: 'Finance', status: 'Pending', lastUpdated: '2024-05-08' },
