@@ -5,37 +5,37 @@ import { MOCK_BILLS, MOCK_RECORDS } from '../constants';
 
 export default function DashboardView() {
   return (
-    <div className="space-y-5">
+    <div className="space-y-4 lg:space-y-5">
       {/* Top Banner Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
         <div className="p-4 bg-white border border-line rounded-lg shadow-sm">
            <div className="text-[10px] font-black uppercase text-text-muted tracking-widest mb-1">Active Session</div>
-           <div className="text-lg font-bold text-text-main">House of Representatives</div>
-           <div className="text-xs font-bold text-accent mt-1">Next Voting: Bill on Agriculture @ 14:00</div>
+           <div className="text-base lg:text-lg font-bold text-text-main">House of Representatives</div>
+           <div className="text-[10px] lg:text-xs font-bold text-accent mt-1">Next Voting: Bill on Agriculture @ 14:00</div>
         </div>
         <div className="p-4 bg-white border border-line rounded-lg shadow-sm">
            <div className="text-[10px] font-black uppercase text-text-muted tracking-widest mb-1">Language Mode</div>
-           <div className="flex gap-2 mt-2">
-              <span className="px-3 py-1 rounded-full bg-primary text-white text-[11px] font-bold">Nepali</span>
-              <span className="px-3 py-1 rounded-full bg-slate-100 text-text-main text-[11px] font-bold">English</span>
-              <span className="px-3 py-1 rounded-full bg-slate-100 text-text-main text-[11px] font-bold">Nepanglish</span>
+           <div className="flex flex-wrap gap-2 mt-2">
+              <span className="px-3 py-1 rounded-full bg-primary text-white text-[10px] lg:text-[11px] font-bold">Nepali</span>
+              <span className="px-3 py-1 rounded-full bg-slate-100 text-text-main text-[10px] lg:text-[11px] font-bold">English</span>
+              <span className="px-3 py-1 rounded-full bg-slate-100 text-text-main text-[10px] lg:text-[11px] font-bold">Nepanglish</span>
            </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
         {/* Main Content Info */}
-        <div className="lg:col-span-2 space-y-5">
-           <div className="bg-white border border-line rounded-lg overflow-hidden flex flex-col h-full min-h-[400px]">
-              <div className="px-4 py-3 bg-slate-50 border-b border-line flex justify-between items-center">
+        <div className="lg:col-span-2 space-y-4 lg:space-y-5">
+           <div className="bg-white border border-line rounded-lg overflow-hidden flex flex-col h-full min-h-[350px] lg:min-h-[400px]">
+              <div className="px-4 py-3 bg-slate-50 border-b border-line flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                  <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-text-main">AI Session: Recent Speech Analysis</span>
                     <span className="text-[10px] font-bold text-emerald-500 flex items-center gap-1">● Encrypted</span>
                  </div>
                  <span className="text-[11px] text-text-muted font-medium">Tuesday, 12 May</span>
               </div>
-              <div className="flex-1 p-5 space-y-6 overflow-y-auto">
-                 <div className="max-w-[85%] self-end ml-auto bg-[#dcf8c6] p-3 rounded-xl rounded-br-none text-sm text-text-main shadow-sm border border-emerald-100">
+              <div className="flex-1 p-4 lg:p-5 space-y-4 lg:space-y-6 overflow-y-auto">
+                 <div className="max-w-[90%] sm:max-w-[85%] self-end ml-auto bg-[#dcf8c6] p-3 rounded-xl rounded-br-none text-sm text-text-main shadow-sm border border-emerald-100">
                    Draft a speech for tomorrow's session regarding the rural electrification project in Karnali. Highlight budget gaps.
                  </div>
                  <div className="max-w-[85%] self-start bg-slate-50 p-4 rounded-xl rounded-bl-none border border-line shadow-sm">

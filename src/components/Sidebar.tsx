@@ -25,8 +25,17 @@ interface SidebarProps {
 
 export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   return (
-    <div className="w-60 h-screen bg-white text-text-muted flex flex-col border-r border-line relative z-20 shrink-0">
-      <div className="p-4 py-6">
+    <div className="w-72 lg:w-60 h-screen bg-white text-text-muted flex flex-col border-r border-line relative z-20 shrink-0">
+      <div className="p-6 lg:p-4 py-8 lg:py-6">
+        <div className="flex items-center justify-between mb-8 lg:hidden">
+            <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                    <Smartphone className="text-white w-5 h-5" />
+                </div>
+                <span className="font-extrabold text-primary uppercase tracking-tighter">SAMSAD AI</span>
+            </div>
+        </div>
+
         <label className="text-[10px] font-black uppercase text-text-muted tracking-[0.1em] mb-4 block">Core Services</label>
         
         <nav className="space-y-1">

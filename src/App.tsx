@@ -10,10 +10,12 @@ import WhatsAppSimulator from './components/WhatsAppSimulator';
 import LibraryView from './components/LibraryView';
 import SpeechLab from './components/SpeechLab';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Bell, HelpCircle } from 'lucide-react';
+import { Search, Bell, HelpCircle, Menu, X } from 'lucide-react';
+import { cn } from './lib/utils';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const renderView = () => {
     switch (activeTab) {
@@ -36,27 +38,51 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen bg-bg-app font-sans selection:bg-primary selection:text-white">
+    <div className="flex h-screen bg-bg-app font-sans selection:bg-primary selection:text-white overflow-hidden">
+      {/* Mobile Sidebar Overlay */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsSidebarOpen(false)}
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Sidebar Navigation */}
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className={cn(
+        "fixed inset-y-0 left-0 z-50 lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out shrink-0",
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        <Sidebar activeTab={activeTab} setActiveTab={(id) => { setActiveTab(id); setIsSidebarOpen(false); }} />
+      </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
         {/* Header */}
-        <header className="h-16 bg-primary text-white border-b-4 border-accent flex items-center justify-between px-6 z-10 shrink-0">
-          <div className="flex items-center gap-4 flex-1">
+        <header className="h-16 bg-primary text-white border-b-4 border-accent flex items-center justify-between px-4 lg:px-6 z-10 shrink-0">
+          <div className="flex items-center gap-3 lg:gap-4 flex-1">
+             <button 
+               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+               className="lg:hidden p-2 -ml-2 hover:bg-white/10 rounded-lg transition-colors"
+             >
+               {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+             </button>
              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-lg tracking-widest uppercase">Samsad AI</span>
-                <span className="opacity-60 text-[10px] font-bold border-l border-white/20 pl-2 uppercase tracking-widest">Parliamentary Assistant</span>
+                <span className="font-extrabold text-base lg:text-lg tracking-widest uppercase truncate max-w-[120px] lg:max-w-none">Samsad AI</span>
+                <span className="opacity-60 text-[10px] font-bold border-l border-white/20 pl-2 uppercase tracking-widest hidden sm:inline-block">Parliamentary Assistant</span>
              </div>
           </div>
           
-          <div className="flex items-center gap-6">
-             <div className="hidden md:flex flex-col text-right">
+          <div className="flex items-center gap-3 lg:gap-6">
+             <div className="hidden sm:flex flex-col text-right">
                 <span className="text-sm font-bold leading-none">Hon. Sangam P.</span>
-                <span className="text-[10px] opacity-70 font-medium mt-1">District 4 | Member of Parliament</span>
+                <span className="text-[10px] opacity-70 font-medium mt-1">District 4 | MP</span>
              </div>
-             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white font-bold border-2 border-white/40 shadow-inner">
+             <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-white/20 flex items-center justify-center text-white font-bold border-2 border-white/40 shadow-inner text-xs lg:text-sm shrink-0">
                 SP
              </div>
           </div>
@@ -64,7 +90,7 @@ export default function App() {
 
         <div className="flex-1 flex overflow-hidden">
           {/* Dynamic Content */}
-          <main className="flex-1 overflow-y-auto p-5 custom-scrollbar bg-[#f8fafc]">
+          <main className="flex-1 overflow-y-auto p-4 lg:p-5 custom-scrollbar bg-[#f8fafc]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
